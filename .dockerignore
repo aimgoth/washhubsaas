@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Electron
+electron/node_modules
+electron/dist
+electron/build
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PHP
+*.log
+.env
+.env.local
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# Database
+*.sql
+*.db
+
+# Documentation
+README.md
+NOTIFICATION_SETUP.md
