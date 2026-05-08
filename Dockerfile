@@ -7,12 +7,17 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
     zip \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mysqli mbstring xml gd zip
+# Configure and install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install pdo_mysql mysqli mbstring xml gd zip
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -20,8 +25,8 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
-COPY carwash/ /var/www/html/
+# Copy project files (entire root to maintain structure)
+COPY . /var/www/html/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \

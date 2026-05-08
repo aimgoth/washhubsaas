@@ -17,7 +17,7 @@ This guide explains how to run WashHub using Docker and Docker Compose.
 
 2. **Build and start the containers**
    ```bash
-   docker-compose up -d
+   docker-compose up -d --build
    ```
 
 3. **Access the application**
@@ -25,6 +25,7 @@ This guide explains how to run WashHub using Docker and Docker Compose.
    - phpMyAdmin: http://localhost:8081
      - Username: root
      - Password: rootpassword
+   - Database (Direct Access): localhost:3307
 
 ## Services
 
@@ -35,12 +36,11 @@ The Docker Compose setup includes three services:
 - **Port**: 8080 (mapped to container port 80)
 - **Purpose**: Runs the PHP application
 - **Volumes**: 
-  - `./carwash:/var/www/html` - Live code mounting for development
-  - `./frontend:/var/www/frontend` - Frontend assets
+  - `.:/var/www/html` - Live code mounting (entire project structure)
 
 ### 2. Database Service (washhub-db)
 - **Image**: MySQL 8.0
-- **Port**: 3306
+- **Port**: 3307 (mapped to 3306) to avoid conflict with XAMPP
 - **Purpose**: Runs the MySQL database
 - **Environment Variables**:
   - `MYSQL_ROOT_PASSWORD=rootpassword`
@@ -131,10 +131,21 @@ docker-compose exec web php -m
 
 ## Database Initialization
 
-The MySQL service will automatically create the `carwash_db` database on first startup. You can use phpMyAdmin at http://localhost:8081 to:
-- Import your database schema
-- Manage tables
-- Run queries
+The MySQL service will automatically create the `carwash_db` database on first startup.
+
+### Seeding with existing data
+1. Export your current database from XAMPP as an `.sql` file.
+2. Place the file inside the `database-seed/` directory.
+3. If the container is already running, you must remove the volume for it to re-initialize:
+   ```bash
+   docker-compose down -v
+   docker-compose up -d
+   ```
+
+### Using phpMyAdmin
+You can also import your database manually via http://localhost:8081:
+- Select `carwash_db` on the left.
+- Click **Import** and upload your `.sql` file.
 
 ## Troubleshooting
 
