@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Car Wash Logging</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <h2>CarWashCo</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li class="active"><a href="admin.html">Log Wash</a></li>
+                <li><a href="#">User Management</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Log a New Car Wash</h1>
+            <div class="user-info">
+                <span></span>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </header>
+        <div class="card-container">
+            <div class="card log-wash-form">
+                <h3>New Wash Details</h3>
+                <form id="log-wash-form">
+                    <div class="form-group">
+                        <label for="service-type">Service Type</label>
+                        <select id="service-type" name="service_type" required>
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="Basic">Basic</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Interior">Interior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-size">Size</label>
+                        <select id="car-size" name="car_size" required>
+                            <option value="" disabled selected>Select Size</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="SUV">SUV</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="number-plate">License Plate</label>
+                        <input type="text" id="number-plate" name="number_plate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="worker">Assign to Worker</label>
+                        <select id="worker" name="worker" required>
+                            <option value="" disabled selected>Loading workers...</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Log Wash</button>
+                </form>
+                <div id="form-message"></div>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js" defer></script>
+    <script src="admin.js" defer></script>
+    <script>
+        // Mobile hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Close menu when clicking nav links
+            const navLinks = sidebar.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

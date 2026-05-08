@@ -1,0 +1,30 @@
+{
+  "name": "EasyWash Point",
+  "short_name": "EasyWash",
+  "start_url": "dashboard.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "description": "Car wash management system",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshot1.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    }
+  ]
+}

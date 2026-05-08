@@ -1,0 +1,22 @@
+# Force HTTPS and redirect www to non-www (Disabled for Local Dev)
+RewriteEngine On
+# RewriteCond %{HTTPS} off [OR]
+# RewriteCond %{HTTP_HOST} ^www\. [NC]
+# RewriteRule ^ https://washhub.com%{REQUEST_URI} [L,R=301,NE]
+
+# Redirect root to /carwash directory (Disabled for local dev because of folder depth)
+# RewriteRule ^$ /carwash/ [L,R=301]
+
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Handle 404 errors (Disabled for local dev)
+# ErrorDocument 404 /carwash/404.php
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default index files
+DirectoryIndex index.php index.html

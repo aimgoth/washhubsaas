@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Washes - Car Wash Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <h2>CarWashCo</h2>
+        <nav>
+            <ul>
+                <li class="active"><a href="employee.html">My Washes</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>My Wash History</h1>
+            <div class="user-info">
+                <span></span>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </header>
+        <div class="dashboard-grid">
+            <div class="card full-width-card">
+                <h3>My Wash History</h3>
+                <div id="wash-summary">
+                    <p>Total Washes: <span id="total-washes">0</span></p>
+                    <p>Total Earned: <span id="total-earned">$0.00</span></p>
+                </div>
+                <table id="wash-history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Service</th>
+                            <th>Size</th>
+                            <th>License Plate</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js" defer></script>
+    <script src="employee.js" defer></script>
+    <script>
+        // Mobile hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Close menu when clicking nav links
+            const navLinks = sidebar.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

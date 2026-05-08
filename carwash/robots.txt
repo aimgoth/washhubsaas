@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://easywashpoint.wuaze.com/carwash/sitemap.xml

@@ -1,0 +1,36 @@
+# Block access to sensitive files
+<FilesMatch "^\.(env|git|sql|htaccess|htpasswd|ini|log|sh|bak|swp)$">
+  Require all denied
+</FilesMatch>
+
+# Fallback for older Apache (mod_access_compat)
+<IfModule mod_access_compat.c>
+  <FilesMatch "\.(env|git|sql|htaccess|htpasswd|ini|log|sh|bak|swp)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Force HTTPS (uncomment if SSL is configured)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php7.c>
+  php_flag display_errors off
+  php_value max_execution_time 300
+  php_value upload_max_filesize 10M
+  php_value post_max_size 12M
+</IfModule>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard - Car Wash Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <h2>CarWashCo</h2>
+        <nav>
+            <ul>
+                <li class="active"><a href="index.html">Dashboard</a></li>
+                <li><a href="admin.html">Log Wash</a></li>
+                <li><a href="#">User Management</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Super Admin Dashboard</h1>
+            <div class="user-info">
+                <span></span>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </header>
+        <div class="dashboard-grid">
+            <div class="card revenue-card">
+                <h3>Total Revenue (Monthly)</h3>
+                <p class="amount">$12,345</p>
+                <div class="chart-placeholder"></div>
+            </div>
+            <div class="card services-card">
+                <h3>Service Popularity</h3>
+                <div class="chart-placeholder"></div>
+            </div>
+            <div class="card performance-card">
+                <h3>Top Employee Performance</h3>
+                <ul>
+                    <li>
+                        <span>John Doe</span>
+                        <span class="metric">150 Washes</span>
+                    </li>
+                    <li>
+                        <span>Jane Smith</span>
+                        <span class="metric">135 Washes</span>
+                    </li>
+                    <li>
+                        <span>Mike Johnson</span>
+                        <span class="metric">120 Washes</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card recent-activity-card">
+                <h3>Recent Washes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>License Plate</th>
+                            <th>Service</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ABC-123</td>
+                            <td>Premium</td>
+                            <td>$25.00</td>
+                        </tr>
+                        <tr>
+                            <td>XYZ-789</td>
+                            <td>Basic</td>
+                            <td>$15.00</td>
+                        </tr>
+                        <tr>
+                            <td>CAR-456</td>
+                            <td>Interior</td>
+                            <td>$30.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js" defer></script>
+    <script src="dashboard.js" defer></script>
+    <script>
+        // Mobile hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Close menu when clicking nav links
+            const navLinks = sidebar.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

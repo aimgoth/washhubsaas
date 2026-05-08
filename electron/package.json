@@ -1,0 +1,34 @@
+{
+  "name": "washhub-desktop",
+  "version": "1.0.0",
+  "description": "Desktop wrapper for WashHub SaaS Platform",
+  "main": "main.js",
+  "author": "GothTech Consult",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.1"
+  },
+  "build": {
+    "appId": "com.washhub.desktop",
+    "productName": "WashHub",
+    "files": [
+      "main.js",
+      "preload.js",
+      "loading.html",
+      "new logo.png"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": ["nsis"],
+      "icon": "new logo.png"
+    }
+  }
+}

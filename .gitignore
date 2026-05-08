@@ -1,0 +1,48 @@
+.aider*
+
+# Environment variables
+.env
+.env.*
+
+# Keep .env.example as template
+!.env.example
+
+# Logs
+*.log
+logs/
+php_errors.log
+daily_report_errors.log
+
+# Database
+*.sql
+*.sqlite
+*.sqlite3
+*.bak
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# PHP
+vendor/
+composer.lock
+.phpcs.xml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.exe
+*.blockmap
